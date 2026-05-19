@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Estamos a Pensar",
-  description: "Associação Estamos a Pensar",
+  title: "DataSpectacles",
+  description: "New stories, told with data — in five languages.",
 };
 
 export default async function RootLayout({
