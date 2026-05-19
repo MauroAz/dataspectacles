@@ -1,57 +1,64 @@
 "use client";
 
-import { useTheme } from "../../context/ThemeProvider";
+/*
+  🦶 FOOTER — DataSpectacles
+  ===========================
+  Teaching note: the footer has four jobs:
+  1. Brand reminder — logo/name at the bottom
+  2. Quick navigation — mirrors the navbar links
+  3. Social links — opens in new tab with security best practices
+  4. Mission button — tucked here so it doesn't clutter the main nav
+     but is findable by anyone who wants to know more about the project
 
-// react-icons/fa has Facebook, YouTube, Rumble (not available), X
-// react-icons/fa6 has the newer X (Twitter) icon and others
-// We mix both packages to get the best version of each icon
+  Theme support: reads isLight from useTheme() and switches all
+  colours automatically — same pattern as every other component.
+*/
+
+import { useTheme } from "../../context/ThemeProvider";
 import { FaFacebook, FaYoutube, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { SiRumble } from "react-icons/si";
 
-// Same links as navbar — keep in sync when adding/removing sections
-// Teaching note 🎓: defined outside component so array isn't recreated on every render
+/* ============================================================
+   Nav links — keep in sync with navbar/index.tsx
+   Teaching note: defined outside the component so this array
+   is created once, not on every re-render.
+   ============================================================ */
 const navLinks = [
-  { label: "Formações", target: "formacoes" },
-  { label: "Manual & Digital", target: "skills" },
-  { label: "Vídeo", target: "video" },
-  { label: "Missão", target: "mission" },
-  { label: "Onde Estamos", target: "map" },
-  { label: "Contacto", target: "contact" },
+  { label: "Stories", target: "stories" },
+  { label: "World", target: "globe" },
+  { label: "Watch", target: "video" },
+  { label: "Contact", target: "contact" },
 ];
 
-// Social links with their brand icons and original brand colors
-// Teaching note 🎓: storing icon as JSX and color as a string lets us
-// render them dynamically in the map below without repeating code
+/* ============================================================
+   Social links
+   Teaching note: storing the icon as JSX and color as a string
+   lets us map over this array cleanly instead of repeating
+   the same <a> block five times.
+   ============================================================ */
 const socialLinks = [
   {
     label: "Instagram",
     url: "https://instagram.com",
-    icon: <FaInstagram size={24} />,
+    icon: <FaInstagram size={22} />,
     color: "#E1306C",
   },
   {
     label: "Facebook",
     url: "https://facebook.com",
-    icon: <FaFacebook size={24} />,
+    icon: <FaFacebook size={22} />,
     color: "#1877F2",
   },
   {
     label: "YouTube",
-    url: "https://youtube.com",
-    icon: <FaYoutube size={24} />,
+    url: "https://www.youtube.com/@dataspectacles",
+    icon: <FaYoutube size={22} />,
     color: "#FF0000",
-  },
-  {
-    label: "Rumble",
-    url: "https://rumble.com",
-    icon: <SiRumble size={24} />,
-    color: "#85C742",
   },
   {
     label: "X",
     url: "https://x.com",
-    icon: <FaXTwitter size={24} />,
+    icon: <FaXTwitter size={22} />,
     color: "#ffffff",
   },
 ];
@@ -60,43 +67,89 @@ export default function Footer() {
   const { theme } = useTheme();
   const isLight = theme === "light";
 
+  /*
+    Teaching note: all theme-dependent values defined here
+    at the top — not scattered through the JSX. One place
+    to look when adjusting light/dark colours.
+  */
+  const bg = isLight ? "#E2D0B8" : "#0A0705";
+  const borderColor = isLight ? "#C4A882" : "#3D3530";
+  const textPrimary = isLight ? "#2C1810" : "#F0E6D3";
+  const textMuted = isLight ? "#8B6340" : "#8A7A6A";
+  const linkColor = isLight ? "#5A3A22" : "#C4B49A";
+
   return (
-    <footer
-      className="px-6 py-12 text-center"
-      style={{ backgroundColor: isLight ? "#6B4423" : "#0f0a03" }}
-    >
+    <footer className="px-6 py-14" style={{ backgroundColor: bg }}>
       <div className="max-w-6xl mx-auto">
-        {/* ── TOP ROW — brand + nav links ── */}
-        {/* flex-col on mobile, flex-row on medium+ screens */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
-          {/* Brand name — italic serif matches navbar */}
-          <div
-            className="text-xl font-bold italic"
-            style={{ color: "#FDF6E3", fontFamily: "Georgia, serif" }}
-          >
-            Estamos a Pensar...
+        {/* ── TOP ROW — brand + nav links ──────────────────── */}
+        <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-10">
+          {/* Brand block */}
+          <div>
+            <p
+              className="text-xl font-bold mb-1"
+              style={{
+                color: textPrimary,
+                fontFamily: "Georgia, serif",
+                letterSpacing: "-0.01em",
+              }}
+            >
+              DataSpectacles
+            </p>
+            <p
+              className="text-sm italic"
+              style={{ color: textMuted, fontFamily: "Georgia, serif" }}
+            >
+              New stories, told with data.
+            </p>
           </div>
 
-          {/* Navigation links — mirror the navbar for bottom-of-page navigation */}
-          <div className="flex flex-wrap justify-center gap-6 text-sm">
+          {/* Nav links */}
+          <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={`#${link.target}`}
                 className="transition hover:opacity-75"
-                style={{ color: "#C4A882", fontFamily: "Georgia, serif" }}
+                style={{ color: linkColor, textDecoration: "none" }}
               >
                 {link.label}
               </a>
             ))}
+
+            {/* ── Mission button ──────────────────────────────
+                Teaching note: this is a ghost button — transparent
+                background, just a border. It sits in the footer
+                rather than the main nav so it doesn't compete
+                with the primary CTAs, but is easy to find for
+                anyone curious about the project's purpose. */}
+
+            <a
+              href="#mission"
+              className="transition hover:opacity-75 ds-btn-secondary"
+              style={{
+                color: "var(--ds-accent)",
+                borderColor: "var(--ds-accent)",
+                padding: "2px 12px",
+                borderRadius: "20px",
+                fontSize: "0.8rem",
+                fontWeight: 600,
+                textDecoration: "none",
+                letterSpacing: "0.02em",
+              }}
+            >
+              Our Mission
+            </a>
           </div>
         </div>
 
-        {/* ── SOCIAL ICONS ── */}
-        {/* Each icon uses its original brand color for instant recognition */}
-        {/* target="_blank" opens in new tab */}
-        {/* rel="noopener noreferrer" is a security best practice for external links */}
-        <div className="flex justify-center gap-6 mb-8">
+        {/* ── SOCIAL ICONS ─────────────────────────────────── */}
+        {/*
+          Teaching note: target="_blank" opens in a new tab.
+          rel="noopener noreferrer" is a security best practice —
+          without it, the new tab can access your page via
+          window.opener which is a security vulnerability.
+        */}
+        <div className="flex gap-5 mb-10">
           {socialLinks.map((social) => (
             <a
               key={social.label}
@@ -104,7 +157,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={social.label}
-              className="transition hover:scale-125 hover:opacity-90"
+              className="transition hover:scale-125"
               style={{ color: social.color }}
             >
               {social.icon}
@@ -112,26 +165,26 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* ── DIVIDER ── */}
-        <hr style={{ borderColor: "#5a3f20", marginBottom: "1.5rem" }} />
+        {/* ── DIVIDER ──────────────────────────────────────── */}
+        <hr style={{ borderColor: borderColor, marginBottom: "1.5rem" }} />
 
-        {/* ── TAGLINE ── */}
-        <p
-          className="text-sm italic mb-3"
-          style={{ color: "#A08060", fontFamily: "Georgia, serif" }}
-        >
-          "As histórias não têm fronteiras."
-        </p>
+        {/* ── BOTTOM ROW — tagline + copyright ─────────────── */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-3">
+          <p
+            className="text-sm italic"
+            style={{ color: textMuted, fontFamily: "Georgia, serif" }}
+          >
+            "Data is just the beginning of the story."
+          </p>
 
-        {/* ── COPYRIGHT ── */}
-        {/* new Date().getFullYear() always returns the current year automatically */}
-        <p
-          className="text-xs"
-          style={{ color: "#A08060", fontFamily: "Georgia, serif" }}
-        >
-          © {new Date().getFullYear()} Estamos a Pensar – Associação Cultural.
-          Todos os direitos reservados.
-        </p>
+          {/*
+            Teaching note: new Date().getFullYear() always returns
+            the current year — copyright never goes stale.
+          */}
+          <p className="text-xs" style={{ color: textMuted }}>
+            © {new Date().getFullYear()} DataSpectacles. All rights reserved.
+          </p>
+        </div>
       </div>
     </footer>
   );
