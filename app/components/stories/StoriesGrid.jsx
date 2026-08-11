@@ -130,9 +130,8 @@ export default function StoriesGrid() {
 function StoryCard({ story }) {
   const category = CATEGORIES[story.category];
 
-  const href = story.slug
-    ? `/en/stories/${story.slug.replace("turkeys-passport-problem", "turkey")}`
-    : "#";
+  const href =
+    story.slug === "turkeys-passport-problem" ? "/en/stories/turkey" : "#";
 
   return (
     <a href={href} style={{ textDecoration: "none", display: "block" }}>
