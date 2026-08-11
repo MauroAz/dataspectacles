@@ -31,6 +31,19 @@ export const CATEGORIES = {
 
 export const stories = [
   {
+    id: 7,
+    number: "#007",
+    title: "The Turkey's Passport Problem",
+    description:
+      "How one bird from Mesoamerica ended up carrying a different country's name in every language on earth — and what that says about the world that named it.",
+    category: "words",
+    date: "JUN 2025",
+    image: null,
+    coverColor: "#1A2E3D",
+    isUpdating: false,
+    slug: "turkeys-passport-problem",
+  },
+  {
     id: 1,
     number: "#001",
     title: "Which Words Went Viral in 2024",
