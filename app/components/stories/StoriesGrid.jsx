@@ -130,149 +130,157 @@ export default function StoriesGrid() {
 function StoryCard({ story }) {
   const category = CATEGORIES[story.category];
 
+  const href = story.slug
+    ? `/en/stories/${story.slug.replace("turkeys-passport-problem", "turkey")}`
+    : "#";
+
   return (
-    <article
-      style={{
-        backgroundColor: "var(--ds-bg-card)",
-        borderRadius: "12px",
-        overflow: "hidden",
-        border: "1px solid var(--ds-bg-border)",
-        transition: "border-color 0.2s ease, transform 0.2s ease",
-        cursor: "pointer",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "var(--ds-accent)";
-        e.currentTarget.style.transform = "translateY(-2px)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = "var(--ds-bg-border)";
-        e.currentTarget.style.transform = "translateY(0)";
-      }}
-    >
-      {/* Cover image area — uses coverColor as bg until real images exist */}
-      <div
+    <a href={href} style={{ textDecoration: "none", display: "block" }}>
+      <article
         style={{
-          height: "200px",
-          backgroundColor: story.coverColor || "var(--ds-bg-elevated)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          position: "relative",
+          backgroundColor: "var(--ds-bg-card)",
+          borderRadius: "12px",
+          overflow: "hidden",
+          border: "1px solid var(--ds-bg-border)",
+          transition: "border-color 0.2s ease, transform 0.2s ease",
+          cursor: "pointer",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.borderColor = "var(--ds-accent)";
+          e.currentTarget.style.transform = "translateY(-2px)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.borderColor = "var(--ds-bg-border)";
+          e.currentTarget.style.transform = "translateY(0)";
         }}
       >
-        {/* Story number badge — top left */}
-        <span
+        {/* Cover image area — uses coverColor as bg until real images exist */}
+        <div
           style={{
-            position: "absolute",
-            top: "12px",
-            left: "12px",
-            background: "rgba(0,0,0,0.5)",
-            color: "var(--ds-text-secondary)",
-            fontSize: "0.75rem",
-            fontWeight: 700,
-            padding: "3px 8px",
-            borderRadius: "20px",
-            letterSpacing: "0.05em",
+            height: "200px",
+            backgroundColor: story.coverColor || "var(--ds-bg-elevated)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
           }}
         >
-          {story.number}
-        </span>
-
-        {/* "Updating" live badge — top right, only when isUpdating=true */}
-        {story.isUpdating && (
+          {/* Story number badge — top left */}
           <span
             style={{
               position: "absolute",
               top: "12px",
-              right: "12px",
-              background: "var(--ds-cat-updating-bg)",
-              color: "var(--ds-cat-updating-text)",
-              fontSize: "0.7rem",
+              left: "12px",
+              background: "rgba(0,0,0,0.5)",
+              color: "var(--ds-text-secondary)",
+              fontSize: "0.75rem",
               fontWeight: 700,
               padding: "3px 8px",
               borderRadius: "20px",
-              letterSpacing: "0.06em",
-              textTransform: "uppercase",
-              display: "flex",
-              alignItems: "center",
-              gap: "5px",
-            }}
-          >
-            {/* Pulsing dot for live feel */}
-            <span
-              style={{
-                width: "6px",
-                height: "6px",
-                borderRadius: "50%",
-                backgroundColor: "var(--ds-cat-updating-text)",
-                display: "inline-block",
-              }}
-            />
-            Updating
-          </span>
-        )}
-
-        {/* Placeholder emoji when no image yet */}
-        {!story.image && (
-          <span style={{ fontSize: "3rem", opacity: 0.4 }}>
-            {story.category === "words" && "🔤"}
-            {story.category === "culture" && "🎭"}
-            {story.category === "sports" && "⚽"}
-            {story.category === "curious" && "📊"}
-            {story.category === "odd" && "🔗"}
-            {story.category === "updating" && "📡"}
-          </span>
-        )}
-      </div>
-
-      {/* Card body */}
-      <div style={{ padding: "16px 20px 20px" }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "10px",
-          }}
-        >
-          <span
-            style={{
-              fontSize: "0.75rem",
-              color: "var(--ds-text-muted)",
               letterSpacing: "0.05em",
             }}
           >
-            {story.date}
+            {story.number}
           </span>
-          {category && (
-            <span className={`ds-chip ${category.chip}`}>{category.label}</span>
+
+          {/* "Updating" live badge — top right, only when isUpdating=true */}
+          {story.isUpdating && (
+            <span
+              style={{
+                position: "absolute",
+                top: "12px",
+                right: "12px",
+                background: "var(--ds-cat-updating-bg)",
+                color: "var(--ds-cat-updating-text)",
+                fontSize: "0.7rem",
+                fontWeight: 700,
+                padding: "3px 8px",
+                borderRadius: "20px",
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                display: "flex",
+                alignItems: "center",
+                gap: "5px",
+              }}
+            >
+              {/* Pulsing dot for live feel */}
+              <span
+                style={{
+                  width: "6px",
+                  height: "6px",
+                  borderRadius: "50%",
+                  backgroundColor: "var(--ds-cat-updating-text)",
+                  display: "inline-block",
+                }}
+              />
+              Updating
+            </span>
+          )}
+
+          {/* Placeholder emoji when no image yet */}
+          {!story.image && (
+            <span style={{ fontSize: "3rem", opacity: 0.4 }}>
+              {story.category === "words" && "🔤"}
+              {story.category === "culture" && "🎭"}
+              {story.category === "sports" && "⚽"}
+              {story.category === "curious" && "📊"}
+              {story.category === "odd" && "🔗"}
+              {story.category === "updating" && "📡"}
+            </span>
           )}
         </div>
 
-        <h3
-          style={{
-            fontSize: "1.1rem",
-            fontWeight: 700,
-            color: "var(--ds-text-primary)",
-            fontFamily: "var(--ds-font-serif)",
-            lineHeight: 1.35,
-            marginBottom: "8px",
-          }}
-        >
-          {story.title}
-        </h3>
+        {/* Card body */}
+        <div style={{ padding: "16px 20px 20px" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: "10px",
+            }}
+          >
+            <span
+              style={{
+                fontSize: "0.75rem",
+                color: "var(--ds-text-muted)",
+                letterSpacing: "0.05em",
+              }}
+            >
+              {story.date}
+            </span>
+            {category && (
+              <span className={`ds-chip ${category.chip}`}>
+                {category.label}
+              </span>
+            )}
+          </div>
 
-        <p
-          style={{
-            fontSize: "0.9rem",
-            color: "var(--ds-text-secondary)",
-            lineHeight: 1.75,
-            margin: 0,
-          }}
-        >
-          {story.description}
-        </p>
-      </div>
-    </article>
+          <h3
+            style={{
+              fontSize: "1.1rem",
+              fontWeight: 700,
+              color: "var(--ds-text-primary)",
+              fontFamily: "var(--ds-font-serif)",
+              lineHeight: 1.35,
+              marginBottom: "8px",
+            }}
+          >
+            {story.title}
+          </h3>
+
+          <p
+            style={{
+              fontSize: "0.9rem",
+              color: "var(--ds-text-secondary)",
+              lineHeight: 1.75,
+              margin: 0,
+            }}
+          >
+            {story.description}
+          </p>
+        </div>
+      </article>
+    </a>
   );
 }
