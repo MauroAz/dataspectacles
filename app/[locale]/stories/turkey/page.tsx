@@ -1,7 +1,7 @@
 export default function TurkeyArticle() {
   return (
     <iframe
-      src="/turkeys_passport_problem_9_1.html"
+      src="/turkeys-passport-problem.html"
       style={{
         position: "fixed",
         top: 0,
