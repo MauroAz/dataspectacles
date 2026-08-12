@@ -366,37 +366,57 @@
   p strong { font-weight: 600; color: var(--ink); }
 
   /* WORD CHIPS */
-  a.word-chip {
+  a.word-chip,
+  button.word-chip {
     display: inline-flex;
     align-items: center;
-    gap: 0.28em;
+    gap: 0.25em;
     background: var(--ink);
     color: var(--cream);
     border-radius: 3px;
-    padding: 0.05em 0.42em 0.12em;
+    padding: 0.08em 0.45em 0.14em;
     font-family: 'Space Mono', monospace;
-    font-size: 0.8em;
+    font-size: 0.82em;
     font-weight: 700;
     text-decoration: none;
+    border: none;
     cursor: pointer;
     transition: background 0.15s, transform 0.1s;
     position: relative;
     top: -1px;
     white-space: nowrap;
     vertical-align: middle;
+    line-height: 1.6;
   }
-  a.word-chip:hover { background: var(--rust); transform: translateY(-1px); }
-  a.word-chip .sp { font-size: 0.82em; opacity: 0.65; }
-  a.word-chip .nat {
-    font-size: 0.7em; opacity: 0.5; font-weight: 400;
-    font-family: 'Source Serif 4', serif; font-style: italic;
+  a.word-chip:hover,
+  button.word-chip.has-audio:hover { background: var(--rust); transform: translateY(-1px); }
+  button.word-chip.playing { background: var(--sage) !important; }
+  button.word-chip.no-audio { opacity: 0.6; cursor: not-allowed; }
+  .word-chip .sp { font-size: 0.78em; opacity: 0.55; margin-right: 0.1em; }
+  .word-chip .word-text {
+    font-size: 1em;
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: 0.02em;
   }
-  a.word-chip .ipa {
-    font-size: 0.68em; opacity: 0.45; font-weight: 400;
-    font-family: 'Source Serif 4', serif; font-style: normal;
-    border-left: 1px solid rgba(245,240,232,0.2);
-    padding-left: 0.4em;
+  .word-chip .nat {
+    font-size: 0.68em;
+    font-weight: 400;
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    color: #C9973A;
+    margin-left: 0.15em;
+  }
+  .word-chip .ipa {
+    font-size: 0.62em;
+    font-weight: 400;
+    font-family: 'Source Serif 4', serif;
+    font-style: normal;
+    color: #8A9BAD;
+    border-left: 1px solid rgba(245,240,232,0.15);
+    padding-left: 0.35em;
     margin-left: 0.1em;
+    letter-spacing: 0.01em;
   }
 
   /* DATA TABLES */
@@ -968,7 +988,7 @@
     Globe fades to cream as scroll begins. A hand-drawn turkey silhouette drops from the top edge, settles in the right margin. It stays throughout the piece, occasionally tilting its head. Alongside it: a guinea fowl, slightly smaller, with a question mark between them. These two birds bookend the visual language of the piece.
   </em>
 
-  <p class="dropcap">There is a bird, native to the forests of Mexico and Central America, that has spent five centuries being named after the wrong place in virtually every language on earth. The English call it a <button class="word-chip has-audio" data-audio="/audio/turkey_en.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> turkey <span class="nat">English</span><span class="ipa">/ˈtɜːrki/</span></button>, after the Ottoman Empire. The Turks call it <button class="word-chip has-audio" data-audio="/audio/hindi_tr.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> hindi <span class="nat">Turkish</span><span class="ipa">/ˈhin.di/</span></button>, after India. Hindi speakers call it <button class="word-chip has-audio" data-audio="/audio/piru_hi.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> piru <span class="nat">Hindi</span></button>, after Peru. The Dutch call it <button class="word-chip has-audio" data-audio="/audio/kalkoen_nl.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> kalkoen <span class="nat">Dutch</span><span class="ipa">/kɑlˈkun/</span></button>, after a port city in India. Malay speakers call it <button class="word-chip has-audio" data-audio="/audio/ayam_belanda_ms.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> ayam belanda <span class="nat">Malay</span></button>, "Dutch chicken." Khmer says <button class="word-chip has-audio" data-audio="/audio/moan_barang_km.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> moan barang <span class="nat">Khmer</span></button>, "French chicken." And Scottish Gaelic, independently and with some geographical imagination, arrived at <button class="word-chip has-audio" data-audio="/audio/cearc_fhrangach_gd.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> cearc fhrangach <span class="nat">Scottish Gaelic</span></button>, also meaning French chicken. Spanish, remarkably, went with <button class="word-chip has-audio" data-audio="/audio/pavo_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> pavo <span class="nat">Spanish</span><span class="ipa">/ˈpa.βo/</span></button>, the Latin word for peacock.</p>
+  <p class="dropcap">There is a bird, native to the forests of Mexico and Central America, that has spent five centuries being named after the wrong place in virtually every language on earth. The English call it a <button class="word-chip has-audio" data-audio="/audio/turkey_en.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">turkey</span> <span class="nat">English</span> <span class="ipa">/ˈtɜːrki/</span></button>, after the Ottoman Empire. The Turks call it <button class="word-chip has-audio" data-audio="/audio/hindi_tr.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">hindi</span> <span class="nat">Turkish</span> <span class="ipa">/ˈhin.di/</span></button>, after India. Hindi speakers call it <button class="word-chip has-audio" data-audio="/audio/piru_hi.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">piru</span> <span class="nat">Hindi</span> <span class="ipa">/ˈpɪ.ɾuː/</span></button>, after Peru. The Dutch call it <button class="word-chip has-audio" data-audio="/audio/kalkoen_nl.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">kalkoen</span> <span class="nat">Dutch</span> <span class="ipa">/kɑlˈkun/</span></button>, after a port city in India. Malay speakers call it <button class="word-chip has-audio" data-audio="/audio/ayam_belanda_ms.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">ayam belanda</span> <span class="nat">Malay</span> <span class="ipa">/ˈa.jɐm bəˈlan.da/</span></button>, "Dutch chicken." Khmer says <button class="word-chip has-audio" data-audio="/audio/moan_barang_km.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">moan barang</span> <span class="nat">Khmer</span> <span class="ipa">/moan baːraŋ/</span></button>, "French chicken." And Scottish Gaelic, independently and with some geographical imagination, arrived at <button class="word-chip has-audio" data-audio="/audio/cearc_fhrangach_gd.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">cearc fhrangach</span> <span class="nat">Scottish Gaelic</span> <span class="ipa">/tʃɛrk ˈrãnax/</span></button>, also meaning French chicken. Spanish, remarkably, went with <button class="word-chip has-audio" data-audio="/audio/pavo_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">pavo</span> <span class="nat">Spanish</span> <span class="ipa">/ˈpa.βo/</span></button>, the Latin word for peacock.</p>
 
   <p>Not one of these languages points to Mexico or Central America, where the animal actually lives. Not one names the continent it came from. Every language reached for something it already knew, a familiar place just over the horizon of the unknown, and planted the bird's name there.</p>
 
@@ -1013,7 +1033,7 @@
 
   <p>Then, sometime around the 1550s, English sailors returning from the Americas brought home a larger, unfamiliar bird with a bare red wattle, a fan of bronze and copper tail feathers, and a sound best described as an insistent gobble. It looked, to someone who had not been paying close attention, somewhat like the guinea fowl. English settlers transferred the name. "Turkey" migrated from an African bird to an American one, by way of a trade route through Constantinople.</p>
 
-  <p>The error was noticed fairly quickly. Once it became clear the two birds were unrelated species, the names were supposed to separate. They did not. The American bird kept <button class="word-chip has-audio" data-audio="/audio/turkey_en.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> turkey</button>. Words, once coined, resist correction. Ireland and Wales borrowed the same mistake wholesale: Irish <button class="word-chip has-audio" data-audio="/audio/turcai_ga.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> turcaí</button>, Welsh <button class="word-chip has-audio" data-audio="/audio/twrci_cy.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> twrci</button>. Both absorbed the English error and moved on.</p>
+  <p>The error was noticed fairly quickly. Once it became clear the two birds were unrelated species, the names were supposed to separate. They did not. The American bird kept <button class="word-chip has-audio" data-audio="/audio/turkey_en.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">turkey</span>  <span class="ipa">/ˈtɜːrki/</span></button>. Words, once coined, resist correction. Ireland and Wales borrowed the same mistake wholesale: Irish <button class="word-chip has-audio" data-audio="/audio/turcai_ga.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">turcaí</span>  <span class="ipa">/ˈt̪ɾˠʊɾˠ.kiː/</span></button>, Welsh <button class="word-chip has-audio" data-audio="/audio/twrci_cy.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">twrci</span>  <span class="ipa">/ˈtʊr.ki/</span></button>. Both absorbed the English error and moved on.</p>
 
   <p>When English settlers in the New World found wild turkeys roaming the forests of Virginia and Massachusetts, they were encountering the same species the Aztecs had domesticated a thousand years earlier. They called the wild bird by the same wrong name as the domestic one. The error had traveled all the way around the world and landed back in the country where the bird was from. Nobody noticed.</p>
 
@@ -1023,7 +1043,7 @@
 
   <p>The Spanish conquistadors were the first Europeans to actually see the bird in its homeland. Hernán Cortés entered the Aztec capital Tenochtitlan in 1519 and encountered the domesticated turkey in Aztec farms and markets. Here, at last, was someone with direct information about where the bird came from.</p>
 
-  <p>They named it <button class="word-chip has-audio" data-audio="/audio/pavo_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> pavo <span class="nat">Spanish</span></button>. The Latin word for peacock.</p>
+  <p>They named it <button class="word-chip has-audio" data-audio="/audio/pavo_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">pavo</span> <span class="nat">Spanish</span> <span class="ipa">/ˈpa.βo/</span></button>. The Latin word for peacock.</p>
 
   <p>The peacock, a bird from South and Southeast Asia, had been known in Europe since antiquity, prized for its spectacular fan of iridescent tail feathers. The conquistadors looked at the turkey, large, impressive, fan-tailed, a grand bird by any measure, and apparently reached for the most extravagant bird they already knew. The turkey was the new peacock. It got the peacock's name.</p>
 
@@ -1041,9 +1061,9 @@
 
   <p>The same confusion, made twice, two hundred years apart, by different people, in different languages, for different reasons, arriving at the same wrong bird. English folk naming and formal Latin taxonomy both reached independently for the guinea fowl and attached it to the turkey. Linnaeus was not aware he was repeating a mistake already embedded in English. He was simply using the nearest Greek term for a large gallinaceous bird. But the effect is identical: the turkey's most authoritative name, the one used in every biological classification, every scientific paper, every museum label in the world, is built on the same misidentification that gave it its most common name. The confusion is not incidental to the turkey's identity in human language. It is constitutive of it. From the first English sailor to the greatest taxonomist of the eighteenth century, everyone who tried to name this bird named a different bird instead.</p>
 
-  <p>Latin American Spanish has a richer set of regional terms that get closer to the original: <button class="word-chip has-audio" data-audio="/audio/guajolote_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> guajolote <span class="nat">Nahuatl / Mexican Spanish</span></button> (Mexico), <button class="word-chip has-audio" data-audio="/audio/chompipe_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> chompipe <span class="nat">Central America</span></button> and <em>chumpe</em> (Central America), <button class="word-chip has-audio" data-audio="/audio/guanajo_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> guanajo <span class="nat">Cuba / Venezuela</span></button>. These words have indigenous roots and no geographical confusion. They are also, notably, the words that survived where the bird was actually domesticated.</p>
+  <p>Latin American Spanish has a richer set of regional terms that get closer to the original: <button class="word-chip has-audio" data-audio="/audio/guajolote_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">guajolote</span> <span class="nat">Nahuatl / Mexican Spanish</span> <span class="ipa">/ɡʷa.xo.ˈlo.te/</span></button> (Mexico), <button class="word-chip has-audio" data-audio="/audio/chompipe_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">chompipe</span> <span class="nat">Central America</span> <span class="ipa">/tʃom.ˈpi.pe/</span></button> and <em>chumpe</em> (Central America), <button class="word-chip has-audio" data-audio="/audio/guanajo_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">guanajo</span> <span class="nat">Cuba / Venezuela</span> <span class="ipa">/ɡwa.ˈna.xo/</span></button>. These words have indigenous roots and no geographical confusion. They are also, notably, the words that survived where the bird was actually domesticated.</p>
 
-  <p>But <em>pavo</em> itself traveled. Spain colonised the Philippines in 1565 and brought turkeys with it aboard the same ships, introducing the bird to the archipelago barely a generation after the Spanish had first encountered it in Mexico. The Tagalog word <button class="word-chip has-audio" data-audio="/audio/pabo_tl.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> pabo <span class="nat">Tagalog</span></button> is a direct phonetic borrowing of Spanish <em>pavo</em>, arriving with the bird itself in the mid-sixteenth century. The peacock error, made by conquistadors standing in Mexico, eventually sailed across the Pacific and became the standard word for turkey in the language of over twenty million people in Southeast Asia. Today, younger Filipinos are more likely to associate the word <em>pabo</em> with Korean slang for "stupid" than with any bird, and most simply use the English word "turkey" instead. The Spanish name is losing ground to the English name, which is itself named after the wrong country.</p>
+  <p>But <em>pavo</em> itself traveled. Spain colonised the Philippines in 1565 and brought turkeys with it aboard the same ships, introducing the bird to the archipelago barely a generation after the Spanish had first encountered it in Mexico. The Tagalog word <button class="word-chip has-audio" data-audio="/audio/pabo_tl.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">pabo</span> <span class="nat">Tagalog</span> <span class="ipa">/ˈpa.bo/</span></button> is a direct phonetic borrowing of Spanish <em>pavo</em>, arriving with the bird itself in the mid-sixteenth century. The peacock error, made by conquistadors standing in Mexico, eventually sailed across the Pacific and became the standard word for turkey in the language of over twenty million people in Southeast Asia. Today, younger Filipinos are more likely to associate the word <em>pabo</em> with Korean slang for "stupid" than with any bird, and most simply use the English word "turkey" instead. The Spanish name is losing ground to the English name, which is itself named after the wrong country.</p>
 
   <table class="chain-table">
     <thead>
@@ -1053,25 +1073,25 @@
       <tr>
         <td class="ln">Spanish</td>
         <td><span class="flag-mini">🇪🇸</span> Spain (origin)</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/pavo_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> pavo <span class="ipa">/ˈpa.βo/</span></button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/pavo_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">pavo</span>  <span class="ipa">/ˈpa.βo/</span></button></td>
         <td class="mn">direct naming, 1519, from Latin <em>pāvō</em> (peacock)</td>
       </tr>
       <tr>
         <td class="ln">Spanish</td>
         <td><span class="flag-mini">🇲🇽🇨🇴🇦🇷🇨🇱🇵🇪🇻🇪🇪🇨🇧🇴🇵🇾🇺🇾</span> Latin America broadly</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/pavo_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> pavo</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/pavo_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">pavo</span>  <span class="ipa">/ˈpa.βo/</span></button></td>
         <td class="mn">carried by Spanish colonisation from 16th century; default term across Latin America except where indigenous words survive</td>
       </tr>
       <tr>
         <td class="ln">Tagalog</td>
         <td><span class="flag-mini">🇵🇭</span> Philippines</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/pabo_tl.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> pabo</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/pabo_tl.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">pabo</span>  <span class="ipa">/ˈpa.bo/</span></button></td>
         <td class="mn">borrowed from Spanish <em>pavo</em>; turkeys introduced by Spain c. 1565; now rarely used, displaced by English "turkey"</td>
       </tr>
       <tr>
         <td class="ln">Chavacano</td>
         <td><span class="flag-mini">🇵🇭</span> Philippines (Zamboanga)</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/pavo_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> pavo</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/pavo_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">pavo</span>  <span class="ipa">/ˈpa.βo/</span></button></td>
         <td class="mn">Chavacano is a Spanish-based creole; retains the original Spanish form directly</td>
       </tr>
     </tbody>
@@ -1082,9 +1102,9 @@
 
   <h2>How the Turks Got It Wrong Differently</h2>
 
-  <p>In Turkish, the word for turkey is <button class="word-chip has-audio" data-audio="/audio/hindi_tr.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> hindi <span class="nat">Turkish</span></button>. This means "from India," a reference to the widespread European belief in the sixteenth century that the Americas and India were the same place, or at least in the same direction. Columbus had sailed west looking for India and found the Caribbean instead. Operating on the assumption he had arrived approximately where he intended, he called the people he met "Indians." That particular error was so thoroughly distributed that it shaped the vocabulary of a continent.</p>
+  <p>In Turkish, the word for turkey is <button class="word-chip has-audio" data-audio="/audio/hindi_tr.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">hindi</span> <span class="nat">Turkish</span> <span class="ipa">/ˈhin.di/</span></button>. This means "from India," a reference to the widespread European belief in the sixteenth century that the Americas and India were the same place, or at least in the same direction. Columbus had sailed west looking for India and found the Caribbean instead. Operating on the assumption he had arrived approximately where he intended, he called the people he met "Indians." That particular error was so thoroughly distributed that it shaped the vocabulary of a continent.</p>
 
-  <p>Turkey became <em>hindi</em> in Turkish. In French, the bird became <button class="word-chip has-audio" data-audio="/audio/dinde_fr.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> dinde <span class="nat">French</span><span class="ipa">/dɛ̃d/</span></button>, contracted from <em>poulet d'Inde</em>, "chicken of India." A whole family of languages followed:</p>
+  <p>Turkey became <em>hindi</em> in Turkish. In French, the bird became <button class="word-chip has-audio" data-audio="/audio/dinde_fr.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">dinde</span> <span class="nat">French</span> <span class="ipa">/dɛ̃d/</span></button>, contracted from <em>poulet d'Inde</em>, "chicken of India." A whole family of languages followed:</p>
 
   <table class="chain-table">
     <thead>
@@ -1094,49 +1114,49 @@
       <tr>
         <td class="ln">Turkish</td>
         <td><span class="flag-mini">🇹🇷</span> Türkiye</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/hindi_tr.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> hindi</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/hindi_tr.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">hindi</span>  <span class="ipa">/ˈhin.di/</span></button></td>
         <td class="mn">from India</td>
       </tr>
       <tr>
         <td class="ln">French</td>
         <td><span class="flag-mini">🇫🇷</span> France</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/dinde_fr.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> dinde</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/dinde_fr.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">dinde</span>  <span class="ipa">/dɛ̃d/</span></button></td>
         <td class="mn">chicken of India (d'Inde)</td>
       </tr>
       <tr>
         <td class="ln">Hebrew</td>
         <td><span class="flag-mini">🇮🇱</span> Israel</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/tarnegol_hodu_he.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> tarnegol hodu</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/tarnegol_hodu_he.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">tarnegol hodu</span>  <span class="ipa">/taʁˈne.ɡol ˈho.du/</span></button></td>
         <td class="mn">rooster of India</td>
       </tr>
       <tr>
         <td class="ln">Armenian</td>
         <td><span class="flag-mini">🇦🇲</span> Armenia</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/hndkahav_hy.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> hndkahav</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/hndkahav_hy.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">hndkahav</span>  <span class="ipa">/hndkaˈhav/</span></button></td>
         <td class="mn">Indian chicken</td>
       </tr>
       <tr>
         <td class="ln">Azerbaijani</td>
         <td><span class="flag-mini">🇦🇿</span> Azerbaijan</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/hind_toyugu_az.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> hind toyuğu</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/hind_toyugu_az.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">hind toyuğu</span>  <span class="ipa">/hind toˈjuɣu/</span></button></td>
         <td class="mn">Indian chicken</td>
       </tr>
       <tr>
         <td class="ln">Russian</td>
         <td><span class="flag-mini">🇷🇺</span> Russia</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/indeyka_ru.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> indeyka</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/indeyka_ru.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">indeyka</span>  <span class="ipa">/ɪnˈdʲejkə/</span></button></td>
         <td class="mn">from India</td>
       </tr>
       <tr>
         <td class="ln">Ukrainian</td>
         <td><span class="flag-mini">🇺🇦</span> Ukraine</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/indyk_uk.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> indyk</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/indyk_uk.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">indyk</span>  <span class="ipa">/ˈɪndɪk/</span></button></td>
         <td class="mn">from India</td>
       </tr>
       <tr>
         <td class="ln">Polish</td>
         <td><span class="flag-mini">🇵🇱</span> Poland</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/indyk_pl.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> indyk</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/indyk_pl.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">indyk</span>  <span class="ipa">/ˈɪndɨk/</span></button></td>
         <td class="mn">from India</td>
       </tr>
       <tr>
@@ -1148,25 +1168,25 @@
       <tr>
         <td class="ln">Basque</td>
         <td><span class="flag-mini">🇪🇸🇫🇷</span> Basque Country <span style="font-size:0.75em;opacity:0.6">‡</span></td>
-        <td><button class="word-chip has-audio" data-audio="/audio/indioilar_eu.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> indioilar</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/indioilar_eu.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">indioilar</span>  <span class="ipa">/in.di.oi.ˈlar/</span></button></td>
         <td class="mn">India-rooster</td>
       </tr>
       <tr>
         <td class="ln">Catalan</td>
         <td><span class="flag-mini">🇪🇸🇫🇷</span> Catalonia <span style="font-size:0.75em;opacity:0.6">‡</span></td>
-        <td><button class="word-chip has-audio" data-audio="/audio/gall_dindi_ca.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> gall d'indi</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/gall_dindi_ca.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">gall d'indi</span>  <span class="ipa">/ˌɡaʎ ˈdin.di/</span></button></td>
         <td class="mn">cock from India</td>
       </tr>
       <tr>
         <td class="ln">Breton</td>
         <td><span class="flag-mini">🇫🇷</span> Brittany, France <span style="font-size:0.75em;opacity:0.6">‡</span></td>
-        <td><button class="word-chip has-audio" data-audio="/audio/yar_indez_br.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> yar-Indez</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/yar_indez_br.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">yar-Indez</span>  <span class="ipa">/ˈjaːr ˈɛ̃n.des/</span></button></td>
         <td class="mn">hen of India</td>
       </tr>
       <tr>
         <td class="ln">Arabic (standard)</td>
         <td><span class="flag-mini">🌍</span> Arab world broadly</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/dik_rumi_ar.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> dīk rūmī</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/dik_rumi_ar.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">dīk rūmī</span>  <span class="ipa">/diːk ˈruːmiː/</span></button></td>
         <td class="mn">Roman/Byzantine rooster *</td>
       </tr>
     </tbody>
@@ -1181,7 +1201,7 @@
 
   <p>It was the Portuguese who added Peru to the confusion, and in doing so set off a chain reaction that would eventually reach all the way to a small Polynesian island most people cannot find on a map.</p>
 
-  <p>The Portuguese encountered the turkey around the same time that Francisco Pizarro was invading the western coast of South America, the territory then being named Peru. In the general excitement and geographical fog of sixteenth-century exploration, the Portuguese concluded that the bird must have come from there. They named it <button class="word-chip has-audio" data-audio="/audio/peru_pt.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> peru <span class="nat">Portuguese</span><span class="ipa">/pɨˈɾu/</span></button>.</p>
+  <p>The Portuguese encountered the turkey around the same time that Francisco Pizarro was invading the western coast of South America, the territory then being named Peru. In the general excitement and geographical fog of sixteenth-century exploration, the Portuguese concluded that the bird must have come from there. They named it <button class="word-chip has-audio" data-audio="/audio/peru_pt.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">peru</span> <span class="nat">Portuguese</span> <span class="ipa">/pɨˈɾu/</span></button>.</p>
 
   <p>This was wrong. The bird does not come from Peru. But the name traveled:</p>
 
@@ -1193,25 +1213,25 @@
       <tr>
         <td class="ln">Portuguese</td>
         <td><span class="flag-mini">🇵🇹</span> Portugal / Brazil</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/peru_pt.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> peru</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/peru_pt.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">peru</span>  <span class="ipa">/pɨˈɾu/</span></button></td>
         <td class="mn">direct naming, 1520s</td>
       </tr>
       <tr>
         <td class="ln">Hindi</td>
         <td><span class="flag-mini">🇮🇳</span> India</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/piru_hi.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> piru</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/piru_hi.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">piru</span>  <span class="ipa">/ˈpɪ.ɾuː/</span></button></td>
         <td class="mn">via Portuguese trade routes</td>
       </tr>
       <tr>
         <td class="ln">Croatian</td>
         <td><span class="flag-mini">🇭🇷</span> Croatia</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/puran_hr.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> puran</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/puran_hr.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">puran</span>  <span class="ipa">/ˈpu.ran/</span></button></td>
         <td class="mn">via Italian <em>peruano</em></td>
       </tr>
       <tr>
         <td class="ln">Slovenian</td>
         <td><span class="flag-mini">🇸🇮</span> Slovenia</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/pura_sl.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> pura</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/pura_sl.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">pura</span>  <span class="ipa">/ˈpuː.ra/</span></button></td>
         <td class="mn">via Italian <em>peruano</em></td>
       </tr>
       <tr>
@@ -1240,7 +1260,7 @@
   <div class="compact-section" id="compact-VI" onclick="expandSection(this)" title="Click to read full section">
   <h2>How the Dutch Named It After a City</h2>
 
-  <p>The Dutch were more specific in their wrongness. Their word, <button class="word-chip has-audio" data-audio="/audio/kalkoen_nl.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> kalkoen <span class="nat">Dutch</span></button>, comes from <em>Calcoen-hoen</em>, "hen of Calicut." Calicut, now called Kozhikode, is a port city on the Malabar Coast of Kerala in southern India, a crucial hub in the Portuguese spice trade. For sixteenth-century Dutch merchants, Calicut was a synonym for "the exotic trading East." They pointed at it specifically rather than at India in the abstract, and in doing so created the most geographically precise wrong name in the entire family.</p>
+  <p>The Dutch were more specific in their wrongness. Their word, <button class="word-chip has-audio" data-audio="/audio/kalkoen_nl.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">kalkoen</span> <span class="nat">Dutch</span> <span class="ipa">/kɑlˈkun/</span></button>, comes from <em>Calcoen-hoen</em>, "hen of Calicut." Calicut, now called Kozhikode, is a port city on the Malabar Coast of Kerala in southern India, a crucial hub in the Portuguese spice trade. For sixteenth-century Dutch merchants, Calicut was a synonym for "the exotic trading East." They pointed at it specifically rather than at India in the abstract, and in doing so created the most geographically precise wrong name in the entire family.</p>
 
   <div class="calicut-map-wrap">
     <svg viewBox="0 0 440 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:6px;background:#0D1B2A;display:block;">
@@ -1302,52 +1322,52 @@
       <tr>
         <td class="ln">Dutch</td>
         <td><span class="flag-mini">🇳🇱</span> Netherlands</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/kalkoen_nl.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> kalkoen</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/kalkoen_nl.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">kalkoen</span>  <span class="ipa">/kɑlˈkun/</span></button></td>
       </tr>
       <tr>
         <td class="ln">Afrikaans</td>
         <td><span class="flag-mini">🇿🇦</span> South Africa</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/kalkoen_af.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> kalkoen</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/kalkoen_af.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">kalkoen</span>  <span class="ipa">/kɑlˈkun/</span></button></td>
       </tr>
       <tr>
         <td class="ln">Norwegian</td>
         <td><span class="flag-mini">🇳🇴</span> Norway</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/kalkun_no.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> kalkun</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/kalkun_no.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">kalkun</span>  <span class="ipa">/ˈkɑl.kʉn/</span></button></td>
       </tr>
       <tr>
         <td class="ln">Danish</td>
         <td><span class="flag-mini">🇩🇰</span> Denmark</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/kalkun_da.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> kalkun</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/kalkun_da.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">kalkun</span>  <span class="ipa">/ˈkʰælˌkɔn/</span></button></td>
       </tr>
       <tr>
         <td class="ln">Swedish</td>
         <td><span class="flag-mini">🇸🇪</span> Sweden</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/kalkon_sv.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> kalkon</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/kalkon_sv.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">kalkon</span>  <span class="ipa">/ˈkal.kɔn/</span></button></td>
       </tr>
       <tr>
         <td class="ln">Icelandic</td>
         <td><span class="flag-mini">🇮🇸</span> Iceland</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/kalkuinn_is.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> kalkúnn</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/kalkuinn_is.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">kalkúnn</span>  <span class="ipa">/ˈkʰalˌkʏnn/</span></button></td>
       </tr>
       <tr>
         <td class="ln">Finnish</td>
         <td><span class="flag-mini">🇫🇮</span> Finland</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/kalkkuna_fi.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> kalkkuna</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/kalkkuna_fi.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">kalkkuna</span>  <span class="ipa">/ˈkɑlk.kʊ.nɑ/</span></button></td>
       </tr>
       <tr>
         <td class="ln">Estonian</td>
         <td><span class="flag-mini">🇪🇪</span> Estonia</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/kalkun_et.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> kalkun</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/kalkun_et.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">kalkun</span>  <span class="ipa">/ˈkɑl.kʊn/</span></button></td>
       </tr>
       <tr>
         <td class="ln">Lithuanian</td>
         <td><span class="flag-mini">🇱🇹</span> Lithuania</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/kalakutas_lt.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> kalakūtas</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/kalakutas_lt.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">kalakūtas</span>  <span class="ipa">/kɐˈlɐ.kuː.tɐs/</span></button></td>
       </tr>
       <tr>
         <td class="ln">Indonesian</td>
         <td><span class="flag-mini">🇮🇩</span> Indonesia</td>
-        <td><button class="word-chip has-audio" data-audio="/audio/kalkun_id.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> kalkun</button></td>
+        <td><button class="word-chip has-audio" data-audio="/audio/kalkun_id.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">kalkun</span>  <span class="ipa">/ˈkal.kun/</span></button></td>
       </tr>
     </tbody>
   </table>
@@ -1365,9 +1385,9 @@
 
   <p>Not every language blamed the same wrong continent. A final cluster pointed at Europe itself.</p>
 
-  <p>Khmer <button class="word-chip has-audio" data-audio="/audio/moan_barang_km.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> moan barang <span class="nat">Khmer</span></button> and Scottish Gaelic <button class="word-chip has-audio" data-audio="/audio/cearc_fhrangach_gd.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> cearc fhrangach <span class="nat">Scottish Gaelic</span></button> both mean "French chicken," apparently because French merchants were the first to bring the bird to those regions. Whoever sold you the turkey got the credit. Greek <button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> galopoula <span class="nat">Greek</span></button> carries a similar connotation. Standard Arabic <button class="word-chip has-audio" data-audio="/audio/dik_rumi_ar.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> dīk rūmī <span class="nat">Arabic</span></button> means "Roman/Byzantine rooster." Palestinian Arabic took a separate path: <button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> diik Habash <span class="nat">Palestinian Arabic</span></button>, "Ethiopian rooster," since Abyssinia was known as Habash in Arabic. Egyptian Arabic uses <em>dīk yūnānī</em> in some dialects, meaning "Greek rooster," named after Greece.</p>
+  <p>Khmer <button class="word-chip has-audio" data-audio="/audio/moan_barang_km.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">moan barang</span> <span class="nat">Khmer</span> <span class="ipa">/moan baːraŋ/</span></button> and Scottish Gaelic <button class="word-chip has-audio" data-audio="/audio/cearc_fhrangach_gd.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">cearc fhrangach</span> <span class="nat">Scottish Gaelic</span> <span class="ipa">/tʃɛrk ˈrãnax/</span></button> both mean "French chicken," apparently because French merchants were the first to bring the bird to those regions. Whoever sold you the turkey got the credit. Greek <button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> galopoula <span class="nat">Greek</span></button> carries a similar connotation. Standard Arabic <button class="word-chip has-audio" data-audio="/audio/dik_rumi_ar.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">dīk rūmī</span> <span class="nat">Arabic</span> <span class="ipa">/diːk ˈruːmiː/</span></button> means "Roman/Byzantine rooster." Palestinian Arabic took a separate path: <button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> diik Habash <span class="nat">Palestinian Arabic</span></button>, "Ethiopian rooster," since Abyssinia was known as Habash in Arabic. Egyptian Arabic uses <em>dīk yūnānī</em> in some dialects, meaning "Greek rooster," named after Greece.</p>
 
-  <p>The Nahuatl name the Aztecs used, <button class="word-chip has-audio" data-audio="/audio/guajolote_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> guajolote <span class="nat">Nahuatl / Mexican Spanish</span></button>, is the only name in common use that points, without confusion or error, toward the place where the bird was actually from. It is the name that did not travel.</p>
+  <p>The Nahuatl name the Aztecs used, <button class="word-chip has-audio" data-audio="/audio/guajolote_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">guajolote</span> <span class="nat">Nahuatl / Mexican Spanish</span> <span class="ipa">/ɡʷa.xo.ˈlo.te/</span></button>, is the only name in common use that points, without confusion or error, toward the place where the bird was actually from. It is the name that did not travel.</p>
 
   <div class="pull-quote">
     <p>"The only name that got it right is the only one that stayed home."</p>
@@ -1379,11 +1399,11 @@
 
   <p>Not every language reached for a map when it needed to name the bird. A significant and underappreciated cluster of languages looked at the turkey and described, with precision, exactly what they saw or heard. These names contain no false claims about where the bird is from. They simply report the experience of encountering it, and they are, in their own way, the most honest names in this entire story.</p>
 
-  <p>Two languages named it for how it arrived. Albanian has two forms: <button class="word-chip has-audio" data-audio="/audio/gjel_deti_sq.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> gjel deti <span class="nat">Albanian</span></button>, sea rooster, and <button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> pule deti</button>, sea hen. Slovak uses <button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> moriak</button> (male) and <button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> morka</button> (female), from <em>more</em>, the Slovak word for sea. These languages did not ask where the bird was from. They noted how it got there: across the sea. That much was demonstrably true, and it is more than can be said for any other name in this article.</p>
+  <p>Two languages named it for how it arrived. Albanian has two forms: <button class="word-chip has-audio" data-audio="/audio/gjel_deti_sq.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">gjel deti</span> <span class="nat">Albanian</span> <span class="ipa">/ˈɟɛl ˈde.ti/</span></button>, sea rooster, and <button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> pule deti</button>, sea hen. Slovak uses <button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> moriak</button> (male) and <button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> morka</button> (female), from <em>more</em>, the Slovak word for sea. These languages did not ask where the bird was from. They noted how it got there: across the sea. That much was demonstrably true, and it is more than can be said for any other name in this article.</p>
 
-  <p>A second cluster named it for the sound it makes. Italian <button class="word-chip has-audio" data-audio="/audio/tacchino_it.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> tacchino <span class="nat">Italian</span></button> renders the turkey's sharp staccato call as <em>tak-tak-tak</em> with a diminutive suffix. German <button class="word-chip has-audio" data-audio="/audio/truthahn_de.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> Truthahn <span class="nat">German</span></button> combines <em>trut</em>, the call farmers used to lure turkeys, with <em>Hahn</em>, rooster. Persian <button class="word-chip has-audio" data-audio="/audio/booghalamoon_fa.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> booghalamoon <span class="nat">Persian</span></button> is widely considered the most phonetically faithful rendering of an actual turkey gobble in any language. James Harbeck at <em>The Week</em> called it a more accurate rendition than the Italian, though he noted he had never personally owned a live turkey and could not be entirely certain.</p>
+  <p>A second cluster named it for the sound it makes. Italian <button class="word-chip has-audio" data-audio="/audio/tacchino_it.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">tacchino</span> <span class="nat">Italian</span> <span class="ipa">/takˈkiː.no/</span></button> renders the turkey's sharp staccato call as <em>tak-tak-tak</em> with a diminutive suffix. German <button class="word-chip has-audio" data-audio="/audio/truthahn_de.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">Truthahn</span> <span class="nat">German</span> <span class="ipa">/ˈtʁuːt.haːn/</span></button> combines <em>trut</em>, the call farmers used to lure turkeys, with <em>Hahn</em>, rooster. Persian <button class="word-chip has-audio" data-audio="/audio/booghalamoon_fa.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">booghalamoon</span> <span class="nat">Persian</span> <span class="ipa">/buːɣalamun/</span></button> is widely considered the most phonetically faithful rendering of an actual turkey gobble in any language. James Harbeck at <em>The Week</em> called it a more accurate rendition than the Italian, though he noted he had never personally owned a live turkey and could not be entirely certain.</p>
 
-  <p>A third cluster named it for what it looked like, and here the descriptions grow unexpectedly precise. Mandarin Chinese <button class="word-chip has-audio" data-audio="/audio/huoji_zh.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> huoji 火雞 <span class="nat">Mandarin</span></button> means fire chicken, for the bird's vivid red head. Japanese <button class="word-chip has-audio" data-audio="/audio/shichimensho_ja.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> shichimenchō 七面鳥 <span class="nat">Japanese</span></button> and Korean <button class="word-chip has-audio" data-audio="/audio/chilmyeonjo_ko.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> chilmyeonjo 칠면조 <span class="nat">Korean</span></button> both mean seven-faced bird, reflecting the male turkey's ability to change the colour and shape of its face dramatically with mood. Thai <button class="word-chip has-audio" data-audio="/audio/kai_nguang_th.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> kai nguang <span class="nat">Thai</span></button> means trunk chicken, comparing the hanging wattle to an elephant's trunk. Burmese <button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> krakhcang <span class="nat">Burmese</span></button> and Urdu <button class="word-chip has-audio" data-audio="/audio/feel_murgh_ur.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> feel murgh <span class="nat">Urdu</span></button> both mean elephant bird or elephant chicken, the same wattle-based observation arrived at independently on opposite sides of the continent.</p>
+  <p>A third cluster named it for what it looked like, and here the descriptions grow unexpectedly precise. Mandarin Chinese <button class="word-chip has-audio" data-audio="/audio/huoji_zh.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">huoji 火雞</span> <span class="nat">Mandarin</span> <span class="ipa">/xwǒ.tɕí/</span></button> means fire chicken, for the bird's vivid red head. Japanese <button class="word-chip has-audio" data-audio="/audio/shichimensho_ja.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">shichimenchō 七面鳥</span> <span class="nat">Japanese</span> <span class="ipa">/ɕi.tɕi.men.tɕoː/</span></button> and Korean <button class="word-chip has-audio" data-audio="/audio/chilmyeonjo_ko.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">chilmyeonjo 칠면조</span> <span class="nat">Korean</span> <span class="ipa">/tɕʰil.mjʌn.dʑo/</span></button> both mean seven-faced bird, reflecting the male turkey's ability to change the colour and shape of its face dramatically with mood. Thai <button class="word-chip has-audio" data-audio="/audio/kai_nguang_th.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">kai nguang</span> <span class="nat">Thai</span> <span class="ipa">/kàj ŋûaŋ/</span></button> means trunk chicken, comparing the hanging wattle to an elephant's trunk. Burmese <button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> krakhcang <span class="nat">Burmese</span></button> and Urdu <button class="word-chip has-audio" data-audio="/audio/feel_murgh_ur.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">feel murgh</span> <span class="nat">Urdu</span> <span class="ipa">/fiːl mʊrɣ/</span></button> both mean elephant bird or elephant chicken, the same wattle-based observation arrived at independently on opposite sides of the continent.</p>
 
   <p>Mandarin also produced, in parallel, what may be the single most vivid name for the turkey in any language: <em>tushouji</em> (吐綬雞), "cough-up-a-ribbon chicken," referring to the way the wattle hangs and waggles from the bird's beak. No European language, in five centuries of naming, came close to that level of observational specificity.</p>
 
@@ -1392,24 +1412,24 @@
       <tr><th>Language</th><th>Country / Region</th><th>Word</th><th>Meaning and logic</th></tr>
     </thead>
     <tbody>
-      <tr><td class="ln">Albanian</td><td><span class="flag-mini">🇦🇱</span> Albania</td><td><button class="word-chip has-audio" data-audio="/audio/gjel_deti_sq.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> gjel deti</button></td><td class="mn">sea rooster (arrived by sea)</td></tr>
+      <tr><td class="ln">Albanian</td><td><span class="flag-mini">🇦🇱</span> Albania</td><td><button class="word-chip has-audio" data-audio="/audio/gjel_deti_sq.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">gjel deti</span>  <span class="ipa">/ˈɟɛl ˈde.ti/</span></button></td><td class="mn">sea rooster (arrived by sea)</td></tr>
       <tr><td class="ln">Slovak</td><td><span class="flag-mini">🇸🇰</span> Slovakia</td><td><button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> moriak / morka</button></td><td class="mn">sea bird (from <em>more</em>, sea)</td></tr>
-      <tr><td class="ln">Italian</td><td><span class="flag-mini">🇮🇹</span> Italy</td><td><button class="word-chip has-audio" data-audio="/audio/tacchino_it.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> tacchino</button></td><td class="mn">onomatopoeia: <em>tak-tak</em> call</td></tr>
-      <tr><td class="ln">German</td><td><span class="flag-mini">🇩🇪</span> Germany / Austria</td><td><button class="word-chip has-audio" data-audio="/audio/truthahn_de.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> Truthahn</button></td><td class="mn"><em>trut</em> (luring call) + <em>Hahn</em> (rooster)</td></tr>
-      <tr><td class="ln">Persian</td><td><span class="flag-mini">🇮🇷</span> Iran</td><td><button class="word-chip has-audio" data-audio="/audio/booghalamoon_fa.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> booghalamoon</button></td><td class="mn">onomatopoeia for the gobble</td></tr>
-      <tr><td class="ln">Mandarin Chinese</td><td><span class="flag-mini">🇨🇳</span> China / Taiwan</td><td><button class="word-chip has-audio" data-audio="/audio/huoji_zh.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> huoji 火雞</button></td><td class="mn">fire chicken (red head and wattle)</td></tr>
-      <tr><td class="ln">Japanese</td><td><span class="flag-mini">🇯🇵</span> Japan</td><td><button class="word-chip has-audio" data-audio="/audio/shichimensho_ja.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> shichimenchō 七面鳥</button></td><td class="mn">seven-faced bird (face changes colour with mood)</td></tr>
-      <tr><td class="ln">Korean</td><td><span class="flag-mini">🇰🇷</span> South Korea</td><td><button class="word-chip has-audio" data-audio="/audio/chilmyeonjo_ko.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> chilmyeonjo 칠면조</button></td><td class="mn">seven-faced bird (same logic as Japanese)</td></tr>
-      <tr><td class="ln">Thai</td><td><span class="flag-mini">🇹🇭</span> Thailand</td><td><button class="word-chip has-audio" data-audio="/audio/kai_nguang_th.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> kai nguang</button></td><td class="mn">trunk chicken (wattle resembles elephant trunk)</td></tr>
+      <tr><td class="ln">Italian</td><td><span class="flag-mini">🇮🇹</span> Italy</td><td><button class="word-chip has-audio" data-audio="/audio/tacchino_it.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">tacchino</span>  <span class="ipa">/takˈkiː.no/</span></button></td><td class="mn">onomatopoeia: <em>tak-tak</em> call</td></tr>
+      <tr><td class="ln">German</td><td><span class="flag-mini">🇩🇪</span> Germany / Austria</td><td><button class="word-chip has-audio" data-audio="/audio/truthahn_de.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">Truthahn</span>  <span class="ipa">/ˈtʁuːt.haːn/</span></button></td><td class="mn"><em>trut</em> (luring call) + <em>Hahn</em> (rooster)</td></tr>
+      <tr><td class="ln">Persian</td><td><span class="flag-mini">🇮🇷</span> Iran</td><td><button class="word-chip has-audio" data-audio="/audio/booghalamoon_fa.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">booghalamoon</span>  <span class="ipa">/buːɣalamun/</span></button></td><td class="mn">onomatopoeia for the gobble</td></tr>
+      <tr><td class="ln">Mandarin Chinese</td><td><span class="flag-mini">🇨🇳</span> China / Taiwan</td><td><button class="word-chip has-audio" data-audio="/audio/huoji_zh.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">huoji 火雞</span>  <span class="ipa">/xwǒ.tɕí/</span></button></td><td class="mn">fire chicken (red head and wattle)</td></tr>
+      <tr><td class="ln">Japanese</td><td><span class="flag-mini">🇯🇵</span> Japan</td><td><button class="word-chip has-audio" data-audio="/audio/shichimensho_ja.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">shichimenchō 七面鳥</span>  <span class="ipa">/ɕi.tɕi.men.tɕoː/</span></button></td><td class="mn">seven-faced bird (face changes colour with mood)</td></tr>
+      <tr><td class="ln">Korean</td><td><span class="flag-mini">🇰🇷</span> South Korea</td><td><button class="word-chip has-audio" data-audio="/audio/chilmyeonjo_ko.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">chilmyeonjo 칠면조</span>  <span class="ipa">/tɕʰil.mjʌn.dʑo/</span></button></td><td class="mn">seven-faced bird (same logic as Japanese)</td></tr>
+      <tr><td class="ln">Thai</td><td><span class="flag-mini">🇹🇭</span> Thailand</td><td><button class="word-chip has-audio" data-audio="/audio/kai_nguang_th.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">kai nguang</span>  <span class="ipa">/kàj ŋûaŋ/</span></button></td><td class="mn">trunk chicken (wattle resembles elephant trunk)</td></tr>
       <tr><td class="ln">Burmese</td><td><span class="flag-mini">🇲🇲</span> Myanmar</td><td><button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> krakhcang</button></td><td class="mn">elephant bird (wattle, same logic as Thai)</td></tr>
-      <tr><td class="ln">Urdu</td><td><span class="flag-mini">🇵🇰</span> Pakistan</td><td><button class="word-chip has-audio" data-audio="/audio/feel_murgh_ur.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> feel murgh</button></td><td class="mn">elephant chicken (same wattle logic)</td></tr>
+      <tr><td class="ln">Urdu</td><td><span class="flag-mini">🇵🇰</span> Pakistan</td><td><button class="word-chip has-audio" data-audio="/audio/feel_murgh_ur.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">feel murgh</span>  <span class="ipa">/fiːl mʊrɣ/</span></button></td><td class="mn">elephant chicken (same wattle logic)</td></tr>
       <tr><td class="ln">Vietnamese</td><td><span class="flag-mini">🇻🇳</span> Vietnam</td><td><button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> gà tây</button></td><td class="mn">western chicken (came from the West)</td></tr>
       <tr><td class="ln">Bulgarian / Macedonian</td><td><span class="flag-mini">🇧🇬🇲🇰</span> Bulgaria / N. Macedonia</td><td><button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> misirka</button></td><td class="mn">Egyptian bird (<em>misir</em> = Egypt in Turkish; arrived via North Africa) †</td></tr>
       <tr><td class="ln">Georgian</td><td><span class="flag-mini">🇬🇪</span> Georgia</td><td><button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> indauri</button></td><td class="mn">from India (India family, via Persian)</td></tr>
-      <tr><td class="ln">Swahili</td><td><span class="flag-mini">🇹🇿🇰🇪</span> East Africa</td><td><button class="word-chip has-audio" data-audio="/audio/bata_mzinga_sw.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> bata mzinga</button></td><td class="mn">the great duck (uncertain; possibly size-based)</td></tr>
-      <tr><td class="ln">Hungarian</td><td><span class="flag-mini">🇭🇺</span> Hungary</td><td><button class="word-chip has-audio" data-audio="/audio/pulyka_hu.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> pulyka</button></td><td class="mn">etymology disputed; possibly onomatopoeia</td></tr>
-      <tr><td class="ln">Bosnian / Serbian</td><td><span class="flag-mini">🇧🇦🇷🇸</span> Bosnia / Serbia</td><td><button class="word-chip has-audio" data-audio="/audio/curka_bs.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> ćurka / ćuran</button></td><td class="mn">possibly onomatopoeia (<em>cur-cur</em>); uncertain</td></tr>
-      <tr><td class="ln">Romanian</td><td><span class="flag-mini">🇷🇴</span> Romania</td><td><button class="word-chip has-audio" data-audio="/audio/curcan_ro.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> curcan</button></td><td class="mn">related to Slavic <em>ćurka</em>; possibly onomatopoeia</td></tr>
+      <tr><td class="ln">Swahili</td><td><span class="flag-mini">🇹🇿🇰🇪</span> East Africa</td><td><button class="word-chip has-audio" data-audio="/audio/bata_mzinga_sw.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">bata mzinga</span>  <span class="ipa">/ˈba.ta mˈziŋ.ɡa/</span></button></td><td class="mn">the great duck (uncertain; possibly size-based)</td></tr>
+      <tr><td class="ln">Hungarian</td><td><span class="flag-mini">🇭🇺</span> Hungary</td><td><button class="word-chip has-audio" data-audio="/audio/pulyka_hu.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">pulyka</span>  <span class="ipa">/ˈpu.jkɒ/</span></button></td><td class="mn">etymology disputed; possibly onomatopoeia</td></tr>
+      <tr><td class="ln">Bosnian / Serbian</td><td><span class="flag-mini">🇧🇦🇷🇸</span> Bosnia / Serbia</td><td><button class="word-chip has-audio" data-audio="/audio/curka_bs.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">ćurka / ćuran</span>  <span class="ipa">/ˈtɕur.ka/</span></button></td><td class="mn">possibly onomatopoeia (<em>cur-cur</em>); uncertain</td></tr>
+      <tr><td class="ln">Romanian</td><td><span class="flag-mini">🇷🇴</span> Romania</td><td><button class="word-chip has-audio" data-audio="/audio/curcan_ro.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">curcan</span>  <span class="ipa">/kurˈkan/</span></button></td><td class="mn">related to Slavic <em>ćurka</em>; possibly onomatopoeia</td></tr>
       <tr><td class="ln">Czech</td><td><span class="flag-mini">🇨🇿</span> Czech Republic</td><td><button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> krocan / krůta</button></td><td class="mn">etymology uncertain</td></tr>
     </tbody>
   </table>
@@ -1536,7 +1556,7 @@
     <p>In June 2022, the Republic of Turkey formally requested that the United Nations, and all international bodies, refer to it henceforth as Türkiye (pronounced approximately tur-key-YAY), the name it has used domestically in Turkish since the founding of the Republic in 1923. The UN accepted the change immediately. Most governments followed relatively quickly: Canada updated its official communications, as did most NATO allies. The ISO country code databases, diplomatic correspondence, and product labeling standards ("Made in Türkiye") were updated.</p>
     <p>Major English-language media did not. The Associated Press style guide, a binding authority for most American newsrooms, was still "watching to see how much acceptance" the Turkish spelling gained as of 2023, and had not made a ruling. The Washington Post and CNN both explicitly stated they would continue using "Turkey" because it "best serves their audience." Reuters also held. Wikipedia kept its article under "Turkey." The BBC uses "Türkiye" in some contexts and "Turkey" in others. The name change, in short, was accepted at the official level and largely ignored at the popular one.</p>
     <p>This means that, as of this writing, the country that changed its name to escape association with a bird is still called, in most English-language contexts, by the name of the bird. The bird is still called by the name of the country. And the country's own word for the bird still means "from India." The situation has not improved.</p>
-    <p>There is one further detail worth noting. Peru, the country whose name is used for the turkey in Portuguese, Hindi, Croatian, Slovenian, Hawaiian, and Rotuman, does not itself have a special word for the turkey. Peruvians use the Spanish <button class="word-chip has-audio" data-audio="/audio/pavo_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> pavo</button>, the word that means peacock. A country that gave its name to a bird across six languages calls that bird by the name of a completely different bird. The circle closes, and it closes wrong.</p>
+    <p>There is one further detail worth noting. Peru, the country whose name is used for the turkey in Portuguese, Hindi, Croatian, Slovenian, Hawaiian, and Rotuman, does not itself have a special word for the turkey. Peruvians use the Spanish <button class="word-chip has-audio" data-audio="/audio/pavo_es.mp3" onclick="playAudio(this)" aria-label="Play pronunciation"><span class="sp">🔊</span> <span class="word-text">pavo</span>  <span class="ipa">/ˈpa.βo/</span></button>, the word that means peacock. A country that gave its name to a bird across six languages calls that bird by the name of a completely different bird. The circle closes, and it closes wrong.</p>
     <p>The bird was domesticated by the Aztecs, named after the Ottoman Empire, renamed after India, renamed after Peru, renamed after a city in India, renamed after France, renamed after Rome, renamed after Ethiopia, confused with a peacock, confused with a guinea fowl, and eventually returned, on the ships of English colonists, to the forests of North America, where it was once again seen by Europeans who called it by its wrong name. It has been living under assumed identities for five hundred years. It does not appear to mind.</p>
   </div>
 
