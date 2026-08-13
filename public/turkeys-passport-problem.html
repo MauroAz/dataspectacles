@@ -266,8 +266,8 @@
   .hero-title em { color: var(--gold); font-style: italic; }
   .hero-subtitle {
     font-family: 'Source Serif 4', serif;
-    font-size: clamp(0.95rem, 2vw, 1.15rem);
-    color: rgba(255,255,255,0.6);
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    color: rgba(255,255,255,0.82);
     margin-top: 1.5rem;
     font-style: italic;
     opacity: 0;
@@ -275,6 +275,7 @@
     max-width: 560px;
     margin-left: auto;
     margin-right: auto;
+    font-weight: 300;
   }
   .scroll-cue {
     position: absolute;
@@ -875,6 +876,181 @@
     0%, 100% { opacity: 0.4; }
     50% { opacity: 0.9; }
   }
+
+  .author-credit {
+    text-align: center;
+    padding: 1.8rem 0 1.2rem;
+    border-top: 1px solid rgba(26,22,18,0.12);
+    border-bottom: 1px solid rgba(26,22,18,0.08);
+    margin-bottom: 1.8rem;
+  }
+  .author-credit-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.2rem;
+  }
+  .author-credit-brand {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .author-credit-rights {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: rgba(26,22,18,0.35);
+    text-transform: uppercase;
+  }
+
+  /* TOC PANEL */
+  #toc-btn {
+    position: fixed;
+    top: 4rem;
+    right: 2rem;
+    z-index: 9997;
+    display: none;
+    background: rgba(13,27,42,0.82);
+    border: 1px solid rgba(201,151,58,0.35);
+    border-radius: 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+    padding: 0.32rem 0.8rem;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    opacity: 0.45;
+    transition: opacity 0.2s;
+    margin-top: 0.35rem;
+  }
+  #toc-btn:hover { opacity: 1; color: var(--gold); }
+
+  #toc-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    z-index: 9995;
+    pointer-events: none;
+    transition: background 0.3s ease;
+  }
+  #toc-overlay.open {
+    background: rgba(0,0,0,0.35);
+    pointer-events: all;
+  }
+
+  #toc-panel {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 300px;
+    height: 100vh;
+    background: var(--globe-bg);
+    border-left: 1px solid rgba(201,151,58,0.25);
+    z-index: 9996;
+    transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
+    overflow-y: auto;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  #toc-panel.open { right: 0; }
+
+  .toc-header {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .toc-close {
+    background: none;
+    border: none;
+    color: rgba(245,240,232,0.4);
+    cursor: pointer;
+    font-size: 1.1rem;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.15s;
+  }
+  .toc-close:hover { color: var(--cream); }
+
+  .toc-mode-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(201,151,58,0.15);
+  }
+  .toc-mode-btn {
+    flex: 1;
+    background: transparent;
+    border: 1px solid rgba(201,151,58,0.3);
+    border-radius: 4px;
+    color: rgba(245,240,232,0.5);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.5rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .toc-mode-btn:hover,
+  .toc-mode-btn.active {
+    background: rgba(201,151,58,0.15);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .toc-list {
+    list-style: none;
+    flex: 1;
+  }
+  .toc-list li {
+    border-bottom: 1px solid rgba(245,240,232,0.05);
+  }
+  .toc-list a {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    padding: 0.65rem 0;
+    text-decoration: none;
+    color: rgba(245,240,232,0.88);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.64rem;
+    line-height: 1.4;
+    transition: color 0.15s;
+  }
+  .toc-list a:hover { color: var(--gold); }
+  .toc-list .toc-num {
+    color: rgba(201,151,58,0.5);
+    font-size: 0.56rem;
+    flex-shrink: 0;
+    margin-top: 0.05em;
+  }
+  .toc-readtime {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(201,151,58,0.15);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    color: rgba(245,240,232,0.25);
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .toc-readtime span { color: var(--gold); }
   /* AUDIO WORD CHIPS */
   .word-chip.has-audio {
     cursor: pointer;
@@ -907,16 +1083,16 @@
   .audio-tooltip.show { opacity: 1; }
 
   .hero-byline {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-    margin-top: 1rem;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.5);
+    margin-top: 1.2rem;
     opacity: 0;
     animation: fadeUp 1s ease 1.4s forwards;
+    font-style: normal;
   }
-  .hero-byline strong { color: var(--gold); font-weight: 700; }
+  .hero-byline strong { color: var(--gold); font-weight: 600; font-style: normal; }
 
   /* TURKEY SILHOUETTE MARGIN */
   .turkey-margin {
@@ -1038,6 +1214,41 @@
 
 <canvas id="ocean-bg"></canvas>
 
+<!-- TOC BUTTON -->
+<button id="toc-btn" onclick="toggleTOC()" aria-label="Table of contents">&#x2767; Contents</button>
+
+<!-- TOC OVERLAY -->
+<div id="toc-overlay" onclick="closeTOC()"></div>
+
+<!-- TOC PANEL -->
+<div id="toc-panel">
+  <div class="toc-header">
+    <span>Contents</span>
+    <button class="toc-close" onclick="closeTOC()" aria-label="Close">&#x2715;</button>
+  </div>
+  <div class="toc-mode-row">
+    <button class="toc-mode-btn active" id="toc-full-btn" onclick="setMode('full');updateTocModeButtons('full')">Full 20m</button>
+    <button class="toc-mode-btn" id="toc-compact-btn" onclick="setMode('compact');updateTocModeButtons('compact')">Compact 10m</button>
+  </div>
+  <ul class="toc-list">
+    <li><a href="#toc-intro" onclick="closeTOC()"><span class="toc-num">&#x2767;</span>Introduction</a></li>
+    <li><a href="#toc-I" onclick="closeTOC()"><span class="toc-num">I</span>Where the Bird Actually Comes From</a></li>
+    <li><a href="#toc-II" onclick="closeTOC()"><span class="toc-num">II</span>How the English Got It Wrong</a></li>
+    <li><a href="#toc-III" onclick="closeTOC()"><span class="toc-num">III</span>How the Spanish Saw a Peacock</a></li>
+    <li><a href="#toc-IV" onclick="closeTOC()"><span class="toc-num">IV</span>How the Turks Got It Wrong Differently</a></li>
+    <li><a href="#toc-V" onclick="closeTOC()"><span class="toc-num">V</span>How the Portuguese Introduced Peru</a></li>
+    <li><a href="#toc-VI" onclick="closeTOC()"><span class="toc-num">VI</span>How the Dutch Named It After a City</a></li>
+    <li><a href="#toc-VII" onclick="closeTOC()"><span class="toc-num">VII</span>France, Rome, and Ethiopia</a></li>
+    <li><a href="#toc-VIII" onclick="closeTOC()"><span class="toc-num">VIII</span>Languages That Gave Up on Geography</a></li>
+    <li><a href="#toc-IX" onclick="closeTOC()"><span class="toc-num">IX</span>The Circle Closes</a></li>
+    <li><a href="#toc-X" onclick="closeTOC()"><span class="toc-num">X</span>What the Bird Never Had</a></li>
+    <li><a href="#toc-XI" onclick="closeTOC()"><span class="toc-num">XI</span>The Bird's Actual Passport</a></li>
+    <li><a href="#toc-closing" onclick="closeTOC()"><span class="toc-num">&#x2767;</span>A Final Note on Irony</a></li>
+  </ul>
+  <div class="toc-readtime">Currently reading: <span id="toc-mode-label">Full &nbsp;&middot;&nbsp; 20 min</span></div>
+</div>
+
+
 <section id="hero">
   <canvas id="globe-canvas"></canvas>
   <div class="hero-text">
@@ -1050,9 +1261,10 @@
 </section>
 
 <div class="paper-wrap">
-<div class="turkey-margin" id="turkey-margin"><img src="/images/turkey-silhouette.png" alt="Turkey silhouette"></div>
+
 <main class="article-body">
 
+  <div id="toc-intro"></div>
   <blockquote class="epigraph">
     <p>"How do the machines know what Tasty Wheat tasted like? Maybe they got it wrong. Maybe what I think Tasty Wheat tasted like actually tasted like oatmeal, or tuna fish. That makes you wonder about a lot of things. You take chicken, for example: maybe they couldn't figure out what to make chicken taste like, which is why chicken tastes like everything."</p>
     <cite>Mouse, <em>The Matrix</em> (1999)</cite>
@@ -1074,6 +1286,7 @@
 
   <p>What happened to this bird is one of the stranger stories in the history of language: a comedy of errors played out across five centuries, six continents, and a cast of explorers, merchants, and navigators who were collectively very confident and almost entirely wrong. The turkey is, in this sense, a linguistic crime scene. Every name it carries is someone else's mistake, fossilized into vocabulary. And the chain of mistakes, if you follow it carefully, forms a perfect circle.</p>
 
+  <div id="toc-I"></div>
   <div class="section-break">&#x2767; I &#x2767;</div>
   <div class="compact-section" id="compact-I" onclick="expandSection(this)" title="Click to read full section">
   <h2>Where the Bird Actually Comes From</h2>
@@ -1093,6 +1306,7 @@
 
   </div><!-- /compact-I -->
 
+  <div id="toc-II"></div>
   <div class="section-break">&#x2767; II &#x2767;</div>
 
   <h2>How the English Got It Wrong</h2>
@@ -1112,6 +1326,7 @@
 
   <p>When English settlers in the New World found wild turkeys roaming the forests of Virginia and Massachusetts, they were encountering the same species the Aztecs had domesticated a thousand years earlier. They called the wild bird by the same wrong name as the domestic one. The error had traveled all the way around the world and landed back in the country where the bird was from. Nobody noticed.</p>
 
+  <div id="toc-III"></div>
   <div class="section-break">&#x2767; III &#x2767;</div>
 
   <h2>How the Spanish Looked at a Turkey and Saw a Peacock</h2>
@@ -1173,6 +1388,7 @@
   </table>
   <p class="note-small">The indigenous regional terms (<em>guajolote</em>, <em>chompipe</em>, <em>guanajo</em>, <em>pisco</em>, <em>chumpe</em>) are not listed here as they derive from Nahuatl and other Mesoamerican languages, not from Spanish <em>pavo</em>. They are covered in Section VII. Equatorial Guinea, the only Spanish-speaking country in Africa, also uses <em>pavo</em>, as does Western Sahara under Moroccan administration. The <em>pavo</em> family is the only naming group in this article where the word traveled by deliberate colonial introduction rather than by trade or confusion.</p>
 
+  <div id="toc-IV"></div>
   <div class="section-break">&#x2767; IV &#x2767;</div>
 
   <h2>How the Turks Got It Wrong Differently</h2>
@@ -1270,6 +1486,7 @@
 
   <p>India had nothing to do with any of this. The turkey is from Mexico. But the Columbus error was so perfectly synchronized across so many languages simultaneously that it became its own kind of fact: a vast linguistic family all pointing, in unison, at the wrong subcontinent.</p>
 
+  <div id="toc-V"></div>
   <div class="section-break">&#x2767; V &#x2767;</div>
 
   <h2>How the Portuguese Introduced a Third Wrong Country</h2>
@@ -1380,6 +1597,7 @@
   </div>
 
 
+  <div id="toc-VI"></div>
   <div class="section-break">&#x2767; VI &#x2767;</div>
   <div class="compact-section" id="compact-VI" onclick="expandSection(this)" title="Click to read full section">
   <h2>How the Dutch Named It After a City</h2>
@@ -1503,6 +1721,7 @@
 
   </div><!-- /compact-VI -->
 
+  <div id="toc-VII"></div>
   <div class="section-break">&#x2767; VII &#x2767;</div>
 
   <h2>The Other Theories: France, Rome, and Ethiopia</h2>
@@ -1517,6 +1736,7 @@
     <p>"The only name that got it right is the only one that stayed home."</p>
   </div>
 
+  <div id="toc-VIII"></div>
   <div class="section-break">&#x2767; VIII &#x2767;</div>
   <div class="compact-section" id="compact-VIII" onclick="expandSection(this)" title="Click to read full section">
   <h2>The Languages That Gave Up on Geography Entirely</h2>
@@ -1561,6 +1781,7 @@
 
   </div><!-- /compact-VIII -->
 
+  <div id="toc-IX"></div>
   <div class="section-break">&#x2767; IX &#x2767;</div>
 
   <h2>The Circle Closes</h2>
@@ -1578,6 +1799,7 @@
 
   <p>The final, most complete absurdity: in modern Hindi, the word for turkey is sometimes rendered as <button class="word-chip no-audio" data-missing="true" onmouseenter="showTooltip(event,'Audio coming soon')" onmouseleave="hideTooltip()" aria-label="Audio coming soon"><span class="sp">🔊</span> ṭarkī <span class="nat">Hindi</span></button>, borrowed directly from the English word "turkey." The language that other languages pointed at for five hundred years eventually pointed right back at English. Which points at Turkey. Which points at India. Which points at Peru. Which uses Spanish, and calls it a peacock. The circle has no exit.</p>
 
+  <div id="toc-X"></div>
   <div class="section-break">&#x2767; X &#x2767;</div>
 
   <h2>What the Bird Never Had</h2>
@@ -1603,6 +1825,7 @@
 
   <p>What got named was not the bird but the moment of encountering it: the surprise, the trade route, the misconception. Five hundred years of names, and not one of them quite got there.</p>
 
+  <div id="toc-XI"></div>
   <div class="section-break">&#x2767; XI &#x2767;</div>
 
   <h2>The Bird's Actual Passport</h2>
@@ -1688,6 +1911,7 @@
     The passport card above renders as a US passport: navy blue cover with gold embossed eagle seal and "United States of America," opening to a cream data page with a security-pattern background, a photo box containing a turkey emoji where Cortes or a customs officer might expect a human face, and a red "Verified Authentic Origin" stamp in the corner. On scroll-in, the cover "opens" with a subtle flip animation to reveal the data page.
   </em>
 
+  <div id="toc-closing"></div>
   <div class="closing-note">
     <h3>A Final Note on Irony</h3>
     <p>In June 2022, the Republic of Turkey formally requested that the United Nations, and all international bodies, refer to it henceforth as Türkiye (pronounced approximately tur-key-YAY), the name it has used domestically in Turkish since the founding of the Republic in 1923. The UN accepted the change immediately. Most governments followed relatively quickly: Canada updated its official communications, as did most NATO allies. The ISO country code databases, diplomatic correspondence, and product labeling standards ("Made in Türkiye") were updated.</p>
@@ -1704,7 +1928,11 @@
   </div>
   <div class="resources">
     <h3>Sources &amp; Acknowledgments</h3>
-    <p><strong>Author:</strong> Mauro Az &nbsp;&middot;&nbsp; DataSpectacles. All rights reserved.</p>
+    <div class="author-credit">
+      <div class="author-credit-name">Mauro Az</div>
+      <div class="author-credit-brand">DataSpectacles</div>
+      <div class="author-credit-rights">&copy; 2025 Mauro Az &nbsp;&middot;&nbsp; All rights reserved</div>
+    </div>
     <p><strong>Illustrations:</strong> All images in this article are AI-generated using GPT Image 2 (OpenAI / ChatGPT Images) and were created specifically for this piece. They are not photographs and do not depict real individuals or events.</p>
     <p><strong>Primary sources:</strong> Slate / Mark Peters, "Turkey in Turkish" (2014, unverified, link unavailable); The Week, "How the Thanksgiving turkey was named after the country Turkey" (2015); Vivid Maps linguistic survey, "The word 'Turkey' (the bird) in various European languages" (2017); EverybodyWiki, "List of names for turkeys"; WordReference Forums etymological thread, "A turkey by any other name" (2010); LINGUIST List Vol. 7, Issue 174; Ohio History Connection, "A Brief History of the Turkey"; Audubon Society, "The Long, Surprising Journey of the Domestic Wild Turkey"; The Nature Conservancy, "Tracing the Wild Origins of the Domestic Turkey."</p>
     <p><strong>On Türkiye:</strong> UN official name change record (26 May 2022); Columbia Journalism Review, "The State Department says 'Turkey' is 'Türkiye' now" (2023); Political Geography Now, "About a Bird? Your Complete Guide to Turkey's 2021–2022 Name Change" (2024).</p>
@@ -2138,6 +2366,55 @@ document.querySelectorAll('a.word-chip').forEach(chip => {
 
   observer.observe(passportCard);
 })();
+
+// ── TABLE OF CONTENTS ────────────────────────────────────────────────────────
+(function() {
+  const panel = document.getElementById('toc-panel');
+  const overlay = document.getElementById('toc-overlay');
+  const btn = document.getElementById('toc-btn');
+
+  window.toggleTOC = function() {
+    const isOpen = panel.classList.contains('open');
+    if (isOpen) closeTOC(); else openTOC();
+  };
+
+  window.openTOC = function() {
+    panel.classList.add('open');
+    overlay.classList.add('open');
+    if (btn) btn.style.opacity = '1';
+    const mt = document.getElementById('mode-toggle');
+    if (mt) mt.style.visibility = 'hidden';
+  };
+
+  window.closeTOC = function() {
+    panel.classList.remove('open');
+    overlay.classList.remove('open');
+    if (btn) btn.style.opacity = '';
+    const mt = document.getElementById('mode-toggle');
+    if (mt) mt.style.visibility = '';
+  };
+
+  window.updateTocModeButtons = function(mode) {
+    document.getElementById('toc-full-btn').classList.toggle('active', mode === 'full');
+    document.getElementById('toc-compact-btn').classList.toggle('active', mode === 'compact');
+    const label = document.getElementById('toc-mode-label');
+    if (label) label.textContent = mode === 'full' ? 'Full · 20 min' : 'Compact · 10 min';
+  };
+
+  // Show TOC button when gate is dismissed (same timing as toggle)
+  const origSetMode = window.setMode;
+  window.setMode = function(mode) {
+    origSetMode(mode);
+    if (btn) btn.style.display = 'block';
+    updateTocModeButtons(mode);
+  };
+
+  // Keyboard: Escape closes panel
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeTOC();
+  });
+})();
+
 // ── PERU CHAIN ANIMATION ────────────────────────────────────────────────────
 (function() {
   const chain = document.getElementById('peru-chain');
